@@ -1,46 +1,102 @@
-# bidabi-clone-adapt-create
-# BIDABI : Clone → Adapt → Create
+# 🛒 Product Data Pipeline & Scraper – Data Engineering Project
 
-Dépôt pédagogique du cours **Big Data and Business Intelligence (BIDABI)**.  
-Ce projet a pour objectif d’initier les étudiants au travail avec du code open‑source, à l’adaptation de projets existants et à la création de leur propre jeu de données d’images.
+## 📌 Overview
 
-## 🎯 Objectif du dépôt
-Ce dépôt sert de **plateforme d’apprentissage** où les étudiants réalisent un cycle complet de travail en data et en machine learning :
+This project implements a **reproducible data pipeline** for collecting, structuring, and versioning product data from the Open Food Facts API.
 
-- cloner un projet open‑source depuis GitHub
-- analyser sa structure, ses dépendances et son fonctionnement
-- adapter le code à un nouveau contexte
-- créer un jeu de données d’images personnalisé
-- intégrer ce jeu de données dans un pipeline ML existant
+It addresses real-world data engineering challenges such as:
+- Handling unreliable APIs (e.g. 503 errors)
+- Structuring raw data consistently
+- Ensuring dataset reproducibility
+- Separating code versioning (Git) from data versioning (DVC)
 
-L’objectif est de reproduire des situations réelles rencontrées par les ingénieurs data et ML lorsqu’ils doivent réutiliser et modifier du code provenant d’autres développeurs.
+The pipeline follows a standard architecture:
+RAW → INTERIM → PROCESSED
 
-## 🎓 Public visé
-Ce projet est destiné aux étudiants du cours **BIDABI**, notamment ceux qui s’intéressent à :
 
-- l’apprentissage automatique
-- l’ingénierie des données
-- la reproductibilité des expériences
-- l’utilisation de GitHub et des projets open‑source
+---
 
-## 🧩 Contenu du dépôt
-Le dépôt inclura :
+## 🎯 Objectives
 
-- des exemples de code à analyser et adapter
-- un modèle de structure pour le jeu de données
-- des consignes pour les travaux pratiques
-- des instructions pour exécuter et modifier le projet
+- Build a scalable data ingestion pipeline  
+- Apply best practices in data organization  
+- Ensure full reproducibility of datasets  
+- Prepare data for analytics and machine learning use cases  
 
-## 🛠️ Compétences développées
-Les étudiants apprendront à :
+---
 
-- lire et comprendre du code écrit par d’autres
-- manipuler des dépôts GitHub
-- concevoir et organiser un jeu de données d’images
-- intégrer des données dans un pipeline ML
-- documenter leur travail de manière claire et reproductible
+## 🧰 Tech Stack
 
-## 📄 Licence et usage
-Ce dépôt est destiné **exclusivement à des fins pédagogiques** dans le cadre du cours BIDABI.  
-Le code et les ressources peuvent être simplifiés ou modifiés pour faciliter l’apprentissage.
+- Python  
+- aiohttp (asynchronous API requests)  
+- Git & GitHub  
+- DVC (Data Version Control)  
+
+---
+
+## 📁 Project Structure
+bidabi-clone-alone/
+│
+├── .dvc/
+├── data/
+│ ├── raw/
+│ │ ├── images/
+│ │ │ └── <category>/
+│ │ └── metadata_<category>_<count>.csv
+│ ├── interim/
+│ ├── processed/
+│ └── localstore/
+│
+├── src/
+│ └── asyscrapper.py
+│
+├── raw.dvc
+├── .gitignore
+├── README.md
+├── requirements.txt
+
+---
+
+## ⚙️ Data Pipeline
+
+### Data Ingestion (RAW)
+
+- Data collected from Open Food Facts API  
+- Images downloaded per category  
+- Metadata stored in CSV files  
+
+**Example:**
+
+data/raw/images/milk/
+data/raw/metadata_milk_180.csv
+
+
+---
+
+## 🔄 Data Versioning (DVC)
+
+- Git tracks code and `.dvc` files  
+- DVC tracks actual datasets  
+
+---
+
+📊 Dataset
+
+Example categories: sugar, milk, bread
+
+Each category includes:
+product images and metadata (CSV)
+
+---
+
+🧠 Key Learnings
+- Modular data pipeline design
+- Data vs code versioning (Git vs DVC)
+- Handling real-world API limitations
+- Structuring scalable projects
+
+---
+
+👩‍💻 Author
+Salma ALAOUI MRANI
 
