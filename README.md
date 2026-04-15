@@ -90,10 +90,10 @@ product images and metadata (CSV)
 ---
 
 🧠 Key Learnings
--Modular data pipeline design
--Data vs code versioning (Git vs DVC)
--Handling real-world API limitations
--Structuring scalable projects
+- Modular data pipeline design
+- Data vs code versioning (Git vs DVC)
+- Handling real-world API limitations
+- Structuring scalable projects
 
 ---
 
