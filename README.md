@@ -82,22 +82,18 @@ data/raw/metadata_milk_180.csv
 
 📊 Dataset
 
-Example categories:
-sugar
-milk
-bread
+Example categories: sugar, milk, bread
 
 Each category includes:
-product images
-metadata (CSV)
+product images and metadata (CSV)
 
 ---
 
 🧠 Key Learnings
-Modular data pipeline design
-Data vs code versioning (Git vs DVC)
-Handling real-world API limitations
-Structuring scalable projects
+-Modular data pipeline design
+-Data vs code versioning (Git vs DVC)
+-Handling real-world API limitations
+-Structuring scalable projects
 
 ---
 
