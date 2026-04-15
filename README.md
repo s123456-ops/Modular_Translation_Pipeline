@@ -78,6 +78,8 @@ data/raw/metadata_milk_180.csv
 - Git tracks code and `.dvc` files  
 - DVC tracks actual datasets  
 
+---
+
 ###📊 Dataset
 
 Example categories:
@@ -96,6 +98,8 @@ Modular data pipeline design
 Data vs code versioning (Git vs DVC)
 Handling real-world API limitations
 Structuring scalable projects
+
+---
 
 ###👩‍💻 Author
 Salma ALAOUI MRANI
