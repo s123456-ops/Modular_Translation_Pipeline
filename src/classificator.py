@@ -57,7 +57,9 @@ set_seed(42)
 H = 256
 W = 256
 BATCH_SIZE = 32
-DATA_DIR = "./Flipkart/Sorted/"
+DATA_DIR = "data/processed"
+MODEL_DIR = "models"
+MODEL_PATH = "models/best_model_resnet18_finetuned.pth"
 NUM_EPOCHS = 20
 PATIENCE = 3
 
@@ -95,27 +97,29 @@ test_transform = transforms.Compose([
 ])
 
 # --- Chargement du dataset ---
-dataset = datasets.ImageFolder(
-    root=DATA_DIR,
+train_dataset = datasets.ImageFolder(
+    root=os.path.join(DATA_DIR, "train"),
     transform=train_transform,
     is_valid_file=lambda p: p.lower().endswith((".jpg", ".jpeg", ".png"))
 )
 
-NUM_CLASSES = len(dataset.classes)
-print("Catégories détectées :", dataset.classes)
-
-# --- Split train/val/test ---
-total_len = len(dataset)
-train_size = int(0.6 * total_len)
-val_size = int(0.2 * total_len)
-test_size = total_len - train_size - val_size
-
-train_dataset, val_dataset, test_dataset = random_split(
-    dataset, [train_size, val_size, test_size]
+val_dataset = datasets.ImageFolder(
+    root=os.path.join(DATA_DIR, "val"),
+    transform=test_transform,
+    is_valid_file=lambda p: p.lower().endswith((".jpg", ".jpeg", ".png"))
 )
 
-val_dataset.dataset.transform = test_transform
-test_dataset.dataset.transform = test_transform
+test_dataset = datasets.ImageFolder(
+    root=os.path.join(DATA_DIR, "test"),
+    transform=test_transform,
+    is_valid_file=lambda p: p.lower().endswith((".jpg", ".jpeg", ".png"))
+)
+
+NUM_CLASSES = len(train_dataset.classes)
+print("Catégories détectées :", train_dataset.classes)
+
+# Ensure classes are the same
+assert train_dataset.classes == val_dataset.classes == test_dataset.classes
 
 train_loader = DataLoader(
     train_dataset, batch_size=BATCH_SIZE, shuffle=True
@@ -228,6 +232,7 @@ best_val_loss = float("inf")
 best_val_acc = 0.0
 patience_counter = 0
 
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 # --- Boucle d'entraînement ---
 for epoch in range(NUM_EPOCHS):
@@ -293,18 +298,16 @@ for epoch in range(NUM_EPOCHS):
         best_val_acc = val_acc
         patience_counter = 0
 
-        torch.save(
-            model.state_dict(),
-            "best_model_resnet18_finetuned.pth"
-        )
+        os.makedirs(MODEL_DIR, exist_ok=True)
+        torch.save(model.state_dict(), MODEL_PATH)
         print("→ Nouveau meilleur modèle sauvegardé")
     else:
         patience_counter += 1
         print(f"Patience: {patience_counter}/{PATIENCE}")
 
-        if patience_counter >= PATIENCE:
-            print("Early stopping triggered.")
-            break
+    if patience_counter >= PATIENCE:
+        print("Early stopping triggered.")
+        break
 
     scheduler.step()
 
