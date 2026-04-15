@@ -209,3 +209,5 @@ __marimo__/
 # Project data
 data/raw/
 data/raw/images/
+!data/raw.dvc
+data/localstore/
