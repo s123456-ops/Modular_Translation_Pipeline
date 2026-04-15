@@ -73,14 +73,14 @@ data/raw/metadata_milk_180.csv
 
 ---
 
-### 🔄 Data Versioning (DVC)
+## 🔄 Data Versioning (DVC)
 
 - Git tracks code and `.dvc` files  
 - DVC tracks actual datasets  
 
 ---
 
-###📊 Dataset
+##📊 Dataset
 
 Example categories:
 sugar
@@ -93,7 +93,7 @@ metadata (CSV)
 
 ---
 
-###🧠 Key Learnings
+##🧠 Key Learnings
 Modular data pipeline design
 Data vs code versioning (Git vs DVC)
 Handling real-world API limitations
