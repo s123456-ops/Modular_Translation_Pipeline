@@ -1,4 +1,4 @@
-# Modular_Translation_Pipeline – Data Engineering & ML Project
+# Food Product Classification Pipeline – Data Engineering & ML Project
 
 ## 📌 Overview
 
